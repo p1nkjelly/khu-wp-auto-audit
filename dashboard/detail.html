@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1 id="result-title"></h1>
+
+    <fieldset style="width:150">
+        <legend>분석 결과</legend>
+        <div id="json-result">
+        </div>
+    </fieldset>
+
+    <hr>
+    <div id="json-output">
+        
+    </div>
+    <script>
+        urlSearch = new URLSearchParams(location.search);
+        file = urlSearch.get('file')
+        const title = document.getElementById('result-title');
+        title.innerHTML = `<a href="/raw?file=${file}">Result : ${file}</a>`
+        fetch('/get-result1?file='+file).then(response => response.json()).then(data => {
+            const outputDiv = document.getElementById('json-result');
+            data.forEach(item2 => {
+		item2 = JSON.parse(item2);
+		outputDiv.innerHTML += `${item2.name}: ${item2.count}건<br>`;
+            });
+        });
+
+        fetch('/get-json1?file='+file).then(response => response.json()).then(data => {
+            const outputDiv = document.getElementById('json-output');
+            data.forEach(item => {
+		        item = JSON.parse(item);
+		        outputDiv.innerHTML += `<h2>${item.name}</h2><br>vuln: ${item.vuln}<br><pre><code>${item.code}</code></pre><hr>`;
+            });
+        });
+
+    </script>
+</body>
+</html>
+

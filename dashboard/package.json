@@ -1,0 +1,16 @@
+{
+  "name": "dashboard",
+  "version": "1.0.0",
+  "description": "Pwnlab wordpress plugin research dashboard",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "mwjeong",
+  "license": "ISC",
+  "dependencies": {
+    "basic-auth-connect": "^1.0.0",
+    "express": "^4.17.1",
+    "python-shell": "^5.0.0"
+  }
+}

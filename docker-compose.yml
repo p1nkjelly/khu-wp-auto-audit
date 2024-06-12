@@ -1,0 +1,9 @@
+version: '3.0'
+services:
+  pwnlab-wp:
+    build: '.'
+    volumes:
+      - './plugin-downloader:/app/pwnlab-wordpress'
+      - './results:/app/results'
+    ports:
+      - '8000:8000'

@@ -1,0 +1,54 @@
+{
+    "sanitizers": [
+        {
+            "name": "absint",
+            "language": "php",
+            "prevent": ["ALL"]
+        },
+        {
+            "name": "esc_attr",
+            "language": "php",
+            "prevent": ["xss"]
+        },
+        {
+            "name": "esc_html",
+            "language": "php",
+            "prevent": ["xss"]
+        },
+        {
+            "name": "esc_textarea",
+            "language": "php",
+            "prevent": ["xss"]
+        },
+        {
+            "name": "sanitize_text_field",
+            "language": "php",
+            "prevent": ["xss"]
+        },
+        {
+            "name": "sanitize_url",
+            "language": "php",
+            "prevent": ["xss"]
+        },
+        {
+            "name": "sanitize_textarea_field",
+            "language": "php",
+            "prevent": ["xss"]
+        },
+        {
+            "name": "esc_url",
+            "language": "php",
+            "prevent": ["xss"]
+        },
+        {
+            "name": "wp_kses_post",
+            "language": "php",
+            "prevent": ["xss"]
+        },
+        {
+            "name": "sanitize_key",
+            "language": "php",
+            "prevent": ["path_traversal"]
+        }
+    ]
+}

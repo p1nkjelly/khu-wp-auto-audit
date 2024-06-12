@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1 id="result-title"></h1>
+
+    <fieldset style="width:150">
+        <legend>실행 결과</legend>
+        <div id="json-result">
+            <p id="filter"></p>
+            <br>
+        </div>
+    </fieldset>
+
+    <hr>
+    <div id="json-output">
+	<table border="1">
+	    <tr>
+		<th>Name</th>
+		<th>Result</th>
+	    </tr>
+	    <tbody id="result">
+            </tbody>
+	</table>
+    </div>
+    <script>
+        urlSearch = new URLSearchParams(location.search);
+        file = urlSearch.get('file')
+        const title = document.getElementById('result-title');
+        title.innerHTML = `Result : ${file}`
+        fetch('/get-json?file='+file).then(response => response.json()).then(data => {
+            const outputDiv = document.getElementById('result');
+            data.forEach(item => {
+		item = JSON.parse(item);
+		outputDiv.innerHTML += `<tr><td><a href="/detail?file=${item.file}">${item.name}</a></td><td>${item.result}</td></tr>`;
+            });
+        });
+        fetch('/get-result?file='+file).then(response => response.json()).then(data => {
+            const outputDiv2 = document.getElementById('json-result');
+            data.forEach(item2 => {
+		item2 = JSON.parse(item2);
+		outputDiv2.innerHTML += `${item2.name}: ${item2.count}건<br>`;
+            });
+        });
+
+        fetch('/get-filter?file='+file).then(response => response.json()).then(data => {
+            const outputP = document.getElementById('filter');
+            data.forEach(item3 => {
+		    item3 = JSON.parse(item3);
+		    outputP.innerHTML += `적용필터: Last Update ${item3.update1} ~ ${item3.update2}, Active Sites ${item3.active1} ~ ${item3.active2}, Download Counts ${item3.download1} ~ ${item3.download2}<br>`;
+            });
+        });
+
+    </script>
+</body>
+</html>
+

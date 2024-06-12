@@ -1,0 +1,7 @@
+composer*
+vendor/
+analysis.php
+__pycache__
+plugins
+results
+
